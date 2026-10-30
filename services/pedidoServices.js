@@ -7,6 +7,22 @@ function criar(dados) {
     throw new Error("Cliente obrigatório!");
 }
 
+    if (typeof dados.valor !== "number" || dados.valor <= 0) {
+    throw new Error("Valor deve ser numérico e maior que zero.");
+}
+
+const tiposPermitidos = ["entrega", "retirada"];
+
+if (!tiposPermitidos.includes(dados.tipo)) {
+    throw new Error("Tipo inválido.");
+}
+
+const prioridadesPermitidas = ["normal", "media", "alta"];
+
+if (!prioridadesPermitidas.includes(dados.prioridade)) {
+    throw new Error("Prioridade inválida.");
+}
+
     const pedido = {
         id: proximoId++,
         cliente: dados.cliente.trim(),
