@@ -68,7 +68,9 @@ function atualizarStatus(id, novoStatus){
 };
 
     if(!statusPermitidos.includes(novoStatus)){
-        throw new Error("Status inválido.", 400);
+        const erro = new Error("Status inválido.");
+        erro.statusCode = 400;
+        throw erro;
     }
 
     if (!transicoes[pedido.status].includes(novoStatus)) {
