@@ -4,23 +4,31 @@ let proximoId = 1;
 function criar(dados) {
     // Validações...
     if (typeof dados.cliente !== "string" || dados.cliente.trim() === "") {
-    throw new Error("Cliente obrigatório!");
+        const erro = new Error("Cliente obrigatório!");
+        erro.statusCode = 400;
+        throw erro;
 }
 
     if (typeof dados.valor !== "number" || dados.valor <= 0) {
-    throw new Error("Valor deve ser numérico e maior que zero.");
+        const erro = new Error("Valor inválido!");
+        erro.statusCode = 400;
+        throw erro;
 }
 
 const tiposPermitidos = ["entrega", "retirada"];
 
 if (!tiposPermitidos.includes(dados.tipo)) {
-    throw new Error("Tipo inválido.");
+    const erro = new Error("Tipo inválido!");
+    erro.statusCode = 400;
+    throw erro;
 }
 
 const prioridadesPermitidas = ["normal", "media", "alta"];
 
 if (!prioridadesPermitidas.includes(dados.prioridade)) {
-    throw new Error("Prioridade inválida.");
+    const erro = new Error("Prioridade inválida!");
+    erro.statusCode = 400;
+    throw erro;
 }
 
     const pedido = {
