@@ -9,4 +9,3 @@ router.get('/:id', pedidoController.buscarPorId);
 router.patch('/:id/status', pedidoController.atualizarStatus);
 
 module.exports = router;
-

@@ -1,4 +1,3 @@
-
 const pedidoService = require('../services/pedidoServices');
 
 function criar(req, res) {
@@ -6,10 +5,14 @@ function criar(req, res) {
         const pedido = pedidoService.criar(req.body);
         return res.status(201).json(pedido);
     } catch (error) {
-        return res.status(400).json({
-            erro: error.message
-        });
-    }
+    console.error(error);
+
+    return res.status(error.statusCode || 400).json({
+        erro: error.statusCode
+            ? error.message
+            : error.message
+    });
+}
 }
 
 function listar(req, res){
